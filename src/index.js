@@ -15,7 +15,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
-app.get('/', (_, req, res) => {
+app.get('/', (_req, res) => {
   res.send('Welcome to spacex')
   next()
 });
