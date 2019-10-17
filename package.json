@@ -8,7 +8,7 @@
     "test": "jest --coverage --verbose --watch ./src/*",
     "clean": "rimraf dist",
     "dev": "nodemon --exec babel-node ./src/index.js",
-    "start": "npm run clean && npm run build && cd dist && node index.js"
+    "start": "npm run clean && rm package-lock.json && npm run build && cd dist && node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +19,8 @@
     "babel-plugin-inline-dotenv": "^1.2.2",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mongodb": "^3.3.2"
+    "mongodb": "^3.3.2",
+    "rimraf": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
@@ -34,7 +35,6 @@
     "babel-preset-react": "^6.24.1",
     "jest": "^24.9.0",
     "mongodb-memory-server": "^5.2.8",
-    "nodemon": "^1.19.4",
-    "rimraf": "^3.0.0"
+    "nodemon": "^1.19.4"
   }
 }
