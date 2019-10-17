@@ -3,15 +3,19 @@ import appConst from '../constants/app'
 import mongodb from 'mongodb'
 
 const MongoClient = mongodb.MongoClient
-const url = process.env.SPACEX_DB_URL
 const dbName = process.env.SPACEX_DB_NAME
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true })
+let client = null
 
 export async function makeDb () {
-  if (!client.isConnected()) {
-    await client.connect()
+  try {
+    client = await MongoClient.connect(
+      process.env.SPACEX_DB_URI, 
+      { useUnifiedTopology: true, useNewUrlParser: true }
+    )
+    return client.db(dbName)
+  } catch (error) {
+    return {code: 400, message: "Unable to reach database."}
   }
-  return client.db(dbName)
 }
 
 const flightsDb = makeFlightsDb({ makeDb, appConst })

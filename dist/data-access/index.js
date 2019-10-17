@@ -15,7 +15,7 @@ var _mongodb = _interopRequireDefault(require("mongodb"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const MongoClient = _mongodb.default.MongoClient;
-const url = process && process.env && process.env.SPACEX_DB_URL || "mongodb://heroku_nwhht6xg:q0k40mr7thqp500a2pl5b7b420@ds335648.mlab.com:35648";
+const url = process && process.env && process.env.SPACEX_DB_URL || "mongodb://ds335648.mlab.com:35648";
 const dbName = process && process.env && process.env.SPACEX_DB_NAME || "heroku_nwhht6xg";
 const client = new MongoClient(url, {
   useNewUrlParser: true,
@@ -23,11 +23,14 @@ const client = new MongoClient(url, {
 });
 
 async function makeDb() {
+  console.log('please');
+
   if (!client.isConnected()) {
     await client.connect();
+    await client.authenticate(process && process.env && process.env.SPACEX_DB_USER || "heroku_nwhht6xg", process && process.env && process.env.SPACEX_DB_PASS || "q0k40mr7thqp500a2pl5b7b42");
   }
 
-  return client.db(dbName);
+  return await client.db(dbName);
 }
 
 const flightsDb = (0, _flightsDb.default)({
