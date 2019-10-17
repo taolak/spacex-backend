@@ -8,9 +8,9 @@
     "test": "jest --coverage --verbose --watch ./src/*",
     "clean": "rimraf dist",
     "dev": "nodemon --exec babel-node ./src/index.js",
-    "start": "npm run clean && rm package-lock.json && npm run build && cd dist && node index.js"
+    "start": "npm run clean && npm run build && cd dist && node index.js"
   },
-  "author": "",
+  "author": "TK",
   "license": "ISC",
   "jest": {
     "verbose": false
