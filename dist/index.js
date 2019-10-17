@@ -17,6 +17,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const app = (0, _express.default)();
 app.use(_bodyParser.default.json());
+app.get('/', (_req, res) => {
+  res.send('Welcome to spacex');
+});
 app.get('/land-success', (0, _expressCallback.default)(_controllers.getLandSuccess));
 app.get('/reused', (0, _expressCallback.default)(_controllers.getReused));
 app.get('/with-reddit', (0, _expressCallback.default)(_controllers.getWithReddit));
