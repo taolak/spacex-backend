@@ -21,7 +21,7 @@ _dotenv.default.config();
 
 const app = (0, _express.default)();
 app.use(_bodyParser.default.json());
-app.use(function (req, res, next) {
+app.use((_, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
