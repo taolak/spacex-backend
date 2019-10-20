@@ -15,22 +15,20 @@ var _mongodb = _interopRequireDefault(require("mongodb"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const MongoClient = _mongodb.default.MongoClient;
-const url = process && process.env && process.env.SPACEX_DB_URL || "mongodb://ds335648.mlab.com:35648";
-const dbName = process && process.env && process.env.SPACEX_DB_NAME || "heroku_nwhht6xg";
-const client = new MongoClient(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 async function makeDb() {
-  console.log('please');
-
-  if (!client.isConnected()) {
-    await client.connect();
-    await client.authenticate(process && process.env && process.env.SPACEX_DB_USER || "heroku_nwhht6xg", process && process.env && process.env.SPACEX_DB_PASS || "q0k40mr7thqp500a2pl5b7b42");
+  try {
+    const client = await MongoClient.connect(process && process.env && process.env.SPACEX_DB_URI || "mongodb://taolak:Taolak2012@ds335648.mlab.com:35648/heroku_nwhht6xg", {
+      useUnifiedTopology: true,
+      useNewUrlParser: true
+    });
+    return client.db(process && process.env && process.env.SPACEX_DB_NAME || "heroku_nwhht6xg");
+  } catch (error) {
+    return {
+      code: 400,
+      message: "Unable to reach database."
+    };
   }
-
-  return await client.db(dbName);
 }
 
 const flightsDb = (0, _flightsDb.default)({
