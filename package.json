@@ -1,8 +1,7 @@
 {
   "name": "spacex",
   "version": "1.0.0",
-  "description": "",
-  "main": "mon.js",
+  "description": "SpaceX backend api for Robots & Pencils",
   "scripts": {
     "build": "npm run clean && babel src -d dist",
     "test": "jest --coverage --verbose --watch ./src/*",
