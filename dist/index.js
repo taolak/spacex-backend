@@ -20,12 +20,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _dotenv.default.config();
 
 const app = (0, _express.default)();
-app.use(_bodyParser.default.json());
-app.use((_, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(_bodyParser.default.json()); // app.use((_, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
 app.get('/', (_req, res) => {
   res.send('Welcome to spacex');
   next();
