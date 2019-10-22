@@ -6,8 +6,6 @@ var _db = require("../../tests/fixtures/db");
 
 var _response = _interopRequireDefault(require("../../tests/fixtures/mocks/response"));
 
-var _filterData = _interopRequireDefault(require("../../tests/fixtures/mocks/filter-data"));
-
 var _refreshData = _interopRequireDefault(require("../../tests/fixtures/mocks/refresh-data"));
 
 var _app = _interopRequireDefault(require("../constants/app"));
@@ -30,21 +28,6 @@ describe('flights db', () => {
   });
   afterAll(async () => {
     await (0, _db.closeDb)();
-  });
-  it('Find land sucess flight', async () => {
-    await flights.insertOne(_filterData.default);
-    const found = await flightsDb.findLandSuccess();
-    expect(found).toEqual(_response.default);
-  });
-  it('Find flight with reused elemennt', async () => {
-    await flights.insertOne(_filterData.default);
-    const found = await flightsDb.findReused();
-    expect(found).toEqual(_response.default);
-  });
-  it('Find flight with reddit links', async () => {
-    await flights.insertOne(_filterData.default);
-    const found = await flightsDb.findWithReddit();
-    expect(found).toEqual(_response.default);
   });
   it('Refresh when: {land_success:false,reused:false,with_reddit:true}', async () => {
     await flights.insertOne(_refreshData.default[0]);
