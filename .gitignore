@@ -3,3 +3,4 @@ db
 dist
 coverage
 *.DS_Store
+.env

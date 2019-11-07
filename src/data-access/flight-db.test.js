@@ -10,6 +10,8 @@ describe('flights db', () => {
     beforeEach(async () => {
       db = await makeDb()
       flights = db.collection(appConst.COLLECTION_NAME)
+      await flights.insertOne(refreshData[0])
+      await flights.insertOne(refreshData[1])
 
       //using dependency injenction
       flightsDb = makeFlightsDb({ makeDb, appConst })
@@ -25,9 +27,6 @@ describe('flights db', () => {
 
     it('Refresh when: {land_success:false,reused:false,with_reddit:true}', async () => {
       
-      await flights.insertOne(refreshData[0])
-      await flights.insertOne(refreshData[1])
-
       let params = { land_success: false, reused: false, with_reddit: true }
       
       const found = await flightsDb.processRefresh(params)
@@ -35,10 +34,6 @@ describe('flights db', () => {
     })
 
     it('Refresh when: {land_success:true,reused:false,with_reddit:true}', async () => {
-      
-      await flights.insertOne(refreshData[0])
-      await flights.insertOne(refreshData[1])
-
 
       let params = { land_success: true, reused: false, with_reddit: true }
       
@@ -48,10 +43,6 @@ describe('flights db', () => {
 
     it('Refresh when: {land_success:true,reused:false,with_reddit:false}', async () => {
       
-      await flights.insertOne(refreshData[0])
-      await flights.insertOne(refreshData[1])
-
-
       let params = { land_success: true, reused: false, with_reddit: false }
       
       const found = await flightsDb.processRefresh(params)
@@ -60,10 +51,6 @@ describe('flights db', () => {
 
     it('Refresh when: {land_success:false,reused:true,with_reddit:false}', async () => {
       
-      await flights.insertOne(refreshData[0])
-      await flights.insertOne(refreshData[1])
-
-
       let params = { land_success: false, reused: true, with_reddit: false }
       
       const found = await flightsDb.processRefresh(params)

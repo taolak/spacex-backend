@@ -2,12 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import callback from './express-callback'
-import {
-  getLandSuccess,
-  getReused,
-  getWithReddit,
-  postRefreshed
-} from './controllers'
+import { postRefreshed } from './controllers'
 
 dotenv.config()
 
@@ -26,9 +21,6 @@ app.get('/', (_req, res) => {
   next()
 });
 
-app.get('/land-success', callback(getLandSuccess))
-app.get('/reused', callback(getReused))
-app.get('/with-reddit', callback(getWithReddit))
 app.post('/refresh', callback(postRefreshed))
 
 const port = process.env.PORT || '5000'

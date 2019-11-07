@@ -1,19 +1,19 @@
 
-################
-    DB SETUP
-################
+#############################
+    .env
+#############################
+SPACEX_DB_URI=mongodb://localhost:27017
+SPACEX_DB_NAME=spacex
 
-Perequisite:
-- Mongo DB (use: https://docs.mongodb.com/manual/installation/)
-- Node JS (use: https://nodejs.org/en/)
-
-Commands:
-npm install -g mongo-seeding-cli
-
-seed -u 'mongodb://127.0.0.1:27017/spacex' --drop-database ./db/data
 
 #############################
-    APP INTSALLATION
+    START APP
 #############################
 
 npm i
+
+npm test
+
+npm dev
+
+npm start (to run production build in ./dist)
